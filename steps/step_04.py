@@ -10,6 +10,7 @@
 
 from solutions.solution_01 import GPT2Config
 
+
 class GPT2MLP(Module):
     """Feed-forward network matching HuggingFace GPT-2 structure.
 

@@ -1,5 +1,5 @@
-    
 from transformers import GPT2LMHeadModel
+
 
 def get_gpt2_config():
     # Load HuggingFace model for weight transfer
@@ -24,6 +24,7 @@ def get_gpt2_config():
         f"layer_norm_epsilon: {torch_model.transformer.ln_f.eps}\n"
     )
     # print(torch_model)
+
 
 if __name__ == "__main__":
     get_gpt2_config()

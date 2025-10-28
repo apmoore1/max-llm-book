@@ -86,6 +86,7 @@ from max.experimental import functional as F
 from max.experimental.tensor import Tensor
 from max.graph import Dim, DimLike
 
+
 @F.functional
 def causal_mask(
     sequence_length: DimLike,

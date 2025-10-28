@@ -12,6 +12,7 @@ from max.graph import Dim, DimLike
 # 2: Add the @F.functional decorator to make this a MAX functional operation
 # TODO: Add the decorator here
 
+
 def causal_mask(
     sequence_length: DimLike,
     num_tokens: DimLike,

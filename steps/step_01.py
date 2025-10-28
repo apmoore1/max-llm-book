@@ -4,8 +4,9 @@
 
 # 2. Add the Python @dataclass decorator to the GPT2Config class
 
+
 class GPT2Config:
-    """GPT-2 configuration matching HuggingFace. 
+    """GPT-2 configuration matching HuggingFace.
 
     Attributes:
         vocab_size: Size of the vocabulary.
@@ -16,6 +17,7 @@ class GPT2Config:
         n_inner: Inner dimension of feed-forward network (defaults to 4 * n_embd if None).
         layer_norm_epsilon: Epsilon for layer normalization.
     """
+
     # 3a. Run `pixi run huggingface` to access the model parameters from the Hugging Face `transformers` library
     # 3b. Alternately, read the values from GPT3 model card: https://huggingface.co/openai-community/gpt2/blob/main/config.json
     # 4. Replace the None of the GPT2Config properties with the correct values
@@ -24,5 +26,5 @@ class GPT2Config:
     n_embd: int = None
     n_layer: int = None
     n_head: int = None
-    n_inner: int = None # Equal to 4 * n_embd
+    n_inner: int = None  # Equal to 4 * n_embd
     layer_norm_epsilon: float = None

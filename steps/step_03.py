@@ -8,6 +8,7 @@
 from max.graph import DimLike
 from max.nn.module_v3 import Module
 
+
 class LayerNorm(Module):
     """Layer normalization module.
 

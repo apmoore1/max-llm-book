@@ -53,16 +53,17 @@ In this step, we're creating a configuration class that stores GPT-2's hyperpara
 ```python
 from dataclasses import dataclass
 
+
 @dataclass
 class GPT2Config:
-   # run `pixi run hugging-face-model` to get the correct values
-    vocab_size: int = ?
-    n_positions: int = ?
-    n_embd: int = ?
-    n_layer: int = ?
-    n_head: int = ?
-    n_inner: int = ?
-    layer_norm_epsilon: float = ?
+    # run `pixi run hugging-face-model` to get the correct values
+    vocab_size: int = 0  # ?
+    n_positions: int = 0  # ?
+    n_embd: int = 0  # ?
+    n_layer: int = 0  # ?
+    n_head: int = 0  # ?
+    n_inner: int = 0  # ?
+    layer_norm_epsilon: float = 0  # ?
 ```
 
 ### Validation:

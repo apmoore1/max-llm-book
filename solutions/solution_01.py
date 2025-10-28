@@ -2,6 +2,7 @@
 
 from dataclasses import dataclass
 
+
 @dataclass
 class GPT2Config:
     """GPT-2 configuration matching HuggingFace.
@@ -15,6 +16,7 @@ class GPT2Config:
         n_inner: Inner dimension of feed-forward network (defaults to 4 * n_embd if None).
         layer_norm_epsilon: Epsilon for layer normalization.
     """
+
     vocab_size: int = 50257
     n_positions: int = 1024
     n_embd: int = 768

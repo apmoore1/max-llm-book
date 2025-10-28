@@ -85,6 +85,7 @@ from max.experimental.tensor import Tensor
 from max.graph import DimLike
 from max.nn.module_v3 import Module
 
+
 class LayerNorm(Module):
     """Layer normalization module."""
 
@@ -101,9 +102,7 @@ class LayerNorm(Module):
     def __call__(self, x: Tensor) -> Tensor:
         """Apply layer normalization."""
         # Apply layer normalization with learned parameters
-        return F.layer_norm(
-            x, gamma=self.weight, beta=self.bias, epsilon=self.eps
-        )
+        return F.layer_norm(x, gamma=self.weight, beta=self.bias, epsilon=self.eps)
 ```
 
 ### Validation:
