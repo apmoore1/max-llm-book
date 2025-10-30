@@ -35,10 +35,10 @@
   --copy-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  width="18px" height="18px" viewBox="0 0 24 24"><path fill="%23262c30" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"/></svg>');
   --check-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24"><path fill="%2300d600" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>');
   --eye-icon: url("https://docs.modular.com/assets/images/eye-light.svg");
-  --m-logo: url("https://docs.modular.com/assets/images/m-dark.svg");
-  --modular-logo: url("https://docs.modular.com/assets/images/modular-dark.svg");
-  --color-mode-icon: url("https://docs.modular.com/assets/images/sun.svg");
-  --close-icon: url("https://docs.modular.com/assets/images/close-dark.svg");
+  --m-logo: url("/assets/icons/m-dark.svg");
+  --modular-logo: url("/assets/icons/modular-dark.svg");
+  --color-mode-icon: url("/assets/icons/sun.svg");
+  --close-icon: url("/assets/icons/close-icon-dark.svg");
   --icons: var(--modular-text);
 }
 
@@ -64,18 +64,17 @@
   --arrow-caret: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><path fill="%23ffffff" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
   --copy-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"  width="18px" height="18px" viewBox="0 0 24 24"><path fill="%23d4dae4" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"/></svg>');
   --eye-icon: url("https://docs.modular.com/assets/images/eye-dark.svg");
-  --m-logo: url("https://docs.modular.com/assets/images/m-light.svg");
-  --modular-logo: url("https://docs.modular.com/assets/images/modular-light.svg");
-  --color-mode-icon: url("https://docs.modular.com/assets/images/moon.svg");
-  --close-icon: url("https://docs.modular.com/assets/images/close-light.svg");
+  --m-logo: url("/assets/icons/m-light.svg");
+  --modular-logo: url("/assets/icons/modular-light.svg");
+  --color-mode-icon: url("/assets/icons/moon.svg");
+  --close-icon: url("/assets/icons/close-icon-light.svg");
 }
 
 /* Adjust content for header */
 html {
   scroll-padding-top: var(--modular-header-height);
   font-family: "Inter", sans-serif;
-  font-feature-settings: "dlig" 1, "cv05" 1, "ss03" 1, "ss07" 1, "ss08" 1,
-    "ss01" 0;
+  font-feature-settings: "dlig" 1, "cv05" 1, "ss03" 1, "ss07" 1, "ss08" 1, "ss01" 0;
   border-right: 1px solid var(--modular-border);
 
   -moz-osx-font-smoothing: grayscale;
@@ -1150,7 +1149,7 @@ details:last-child {
 
 .note {
   background-color: #e7f3fe;
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #2196f3;
   padding: 15px;
   margin: 20px 0;
   border-radius: 0 4px 4px 0;
@@ -1158,10 +1157,10 @@ details:last-child {
 
 /* Dark theme adjustments for note */
 .ayu .note,
-.coal .note,  
+.coal .note,
 .navy .note {
   background-color: rgba(33, 150, 243, 0.1);
-  border-left: 4px solid #2196F3;
+  border-left: 4px solid #2196f3;
 }
 
 /* Restore original content max-width */
@@ -1169,4 +1168,3 @@ main .content {
   max-width: var(--content-max-width);
   padding: 0 var(--page-padding);
 }
-

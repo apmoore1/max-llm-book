@@ -15,7 +15,6 @@ additional-css = [
 additional-js = [
     "theme/code-highlighting.js",
     "theme/sidebar.js",
-    "theme/solution.js",
     "theme/init-amplitude.js",
     "theme/tabs.js",
 ]
