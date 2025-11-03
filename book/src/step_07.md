@@ -12,7 +12,7 @@ In this step you'll implement the Q/K/V projections for attention. These linear 
 - Key: what do I contain?
 - Value: what information do I carry?
 
-GPT-2 uses a single combined linear layer called `c_attn` that projects from embedding dimension (`768`) to 3 times that size (`2304`), then splits the output into separate Q, K, and V tensors.
+GPT-2 uses a single combined linear layer called `c_attn` that projects from embedding dimension (768) to 3 times that size (2304), then splits the output into separate Q, K, and V tensors. This combined projection is more efficient than three separate `Linear(768, 768)` layers. A single matrix multiplication with a larger weight matrix is faster due to better hardware utilization and reduced memory overhead.
 
 Projections allow the model to learn transformations that make attention patterns easier to detect. The same input embedding gets projected into three different spaces (Q, K, V), each optimized for its role in the attention mechanism.
 

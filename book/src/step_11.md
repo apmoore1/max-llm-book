@@ -10,7 +10,7 @@ In this step you'll build the `Block` class that combines all previous component
 
 Each block has two sub-layers: multi-head attention (with layer norm and residual) and feed-forward MLP (with layer norm and residual). The pattern for each sub-layer is `x = x + sublayer(layer_norm(x))`.
 
-GPT-2 stacks 12 identical transformer blocks. The pre-norm pattern (normalize before sublayer) is more stable than post-norm for deep networks, enabling effective training without careful initialization or learning rate warmup.
+GPT-2 stacks 12 identical transformer blocks. The pre-norm pattern (normalize before sublayer) is more stable than post-norm for deep networks. In pre-norm, gradients flow through both the normalized path and the residual path, preventing gradient explosion. Post-norm (`x = layer_norm(x + sublayer(x))`) can suffer from unstable gradients in very deep networks. Pre-norm enables effective training without careful initialization or learning rate warmup.
 
 ## Understanding the architecture
 

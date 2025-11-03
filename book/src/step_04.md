@@ -14,9 +14,11 @@ While attention aggregates information across tokens through weighted sums, the 
 
 The MLP consists of two linear layers with GELU activation between them:
 
-1. **Expansion layer (c_fc)**: Projects from embedding dimension (768) to intermediate size (3072 = 4×768)
+1. **Expansion layer (c_fc)**: Projects from embedding dimension (768) to intermediate size (3072 = 4×768). The 4× expansion ratio comes from the original Transformer paper and has been empirically validated across many architectures.
 2. **GELU activation**: Applies smooth non-linear transformation
 3. **Projection layer (c_proj)**: Projects from intermediate size back to embedding dimension (768)
+
+GELU (Gaussian Error Linear Unit) is the activation function used in GPT-2. The `approximate="tanh"` parameter uses a tanh-based approximation instead of the exact Gaussian computation. At the time GPT-2 was implemented, the exact GELU was too slow, so the tanh approximation was used. While exact GELU is fast enough now, we use the approximation to match GPT-2's original implementation for weight compatibility.
 
 The layer names `c_fc` and `c_proj` match the original GPT-2 checkpoint structure for weight loading compatibility.
 

@@ -14,6 +14,8 @@ Transformers process all positions in parallel through attention, unlike RNNs th
 
 Position embeddings work like token embeddings: a lookup table with shape [1024, 768] where 1024 is the maximum sequence length. Position 0 gets the first row, position 1 gets the second row, and so on.
 
+GPT-2 uses learned position embeddings, meaning these vectors are initialized randomly and trained alongside the model. This differs from the original Transformer which used fixed sinusoidal position encodings. Learned embeddings let the model discover optimal position representations for its specific task, though they cannot generalize beyond the maximum length seen during training (1024 tokens).
+
 **Key parameters**:
 - Maximum sequence length: 1,024 positions
 - Embedding dimension: 768 for GPT-2 base

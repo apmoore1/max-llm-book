@@ -10,7 +10,7 @@ In this step you'll combine residual connections and layer normalization into a 
 
 GPT-2 uses pre-norm architecture: layer norm is applied before each sublayer (attention or MLP), following the pattern `x = x + sublayer(layer_norm(x))`. This is more stable than post-norm for deep networks.
 
-Residual connections create direct gradient paths through the network, preventing vanishing gradients in deep models. Layer normalization stabilizes training by keeping activation distributions consistent, and works identically during training and inference because it normalizes each example independently.
+Residual connections create direct gradient paths through the network. During backpropagation, gradients can flow through the identity path (`x = x + ...`) without being multiplied by layer weights, preventing vanishing gradients in deep models. This allows training networks with 12+ layers. Without residuals, gradients would diminish exponentially as they propagate through many layers. Layer normalization stabilizes training by keeping activation distributions consistent, and works identically during training and inference because it normalizes each example independently.
 
 ## Understanding the components
 

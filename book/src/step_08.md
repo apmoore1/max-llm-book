@@ -25,6 +25,8 @@ Attention(Q, K, V) = softmax(QK^T / sqrt(d_k))V
 4. Apply softmax: converts scores to probabilities
 5. Weighted sum: `attn_weights @ value`
 
+Scaling by sqrt(d_k) is critical. Without it, the dot products grow large as the embedding dimension increases, pushing softmax into regions with extremely small gradients (saturation). For d_k=64, typical dot products have variance around 64. Dividing by sqrt(64)=8 normalizes them to unit variance, keeping softmax in a responsive range.
+
 The causal mask adds -∞ to attention scores for future positions. After softmax, e^(-∞) = 0, so future positions get zero attention weight.
 
 <div class="note">

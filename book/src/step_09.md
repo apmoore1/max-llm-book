@@ -8,7 +8,7 @@
 
 In this step you'll extend single-head attention to multi-head attention. Instead of one attention operation, you'll run 12 attention operations in parallel, each learning to focus on different patterns.
 
-GPT-2 uses 12 heads with 768-dimensional embeddings. Each head operates on 768 ÷ 12 = 64 dimensions. The Q, K, V tensors are reshaped to split the embedding dimension across heads, then attention is computed for all heads in parallel. The outputs are concatenated back together.
+GPT-2 uses 12 heads with 768-dimensional embeddings. Each head operates on 768 ÷ 12 = 64 dimensions. This 64-dimensional head size strikes a balance: large enough to capture meaningful patterns, small enough to allow multiple specialized heads. The Q, K, V tensors are reshaped to split the embedding dimension across heads, then attention is computed for all heads in parallel. The outputs are concatenated back together.
 
 Multiple heads let the model learn complementary attention strategies. Different heads can specialize in different types of relationships: one might attend to adjacent tokens, another to syntactic patterns, another to semantic similarity. This increases the model's capacity without dramatically increasing computation.
 

@@ -19,7 +19,7 @@ The mask creates a lower triangular pattern where each token can only attend to 
 - Position 2 attends to: positions 0-2
 - And so on...
 
-The mask shape is `(sequence_length, sequence_length + num_tokens)`. This allows attending to both the current sequence and previous context from the KV cache.
+The mask shape is `(sequence_length, sequence_length + num_tokens)`. This shape is designed for KV cache compatibility during generation. The KV cache stores key and value tensors from previously generated tokens, so you only need to compute attention for new tokens while attending to both new tokens (sequence_length) and cached tokens (num_tokens). This significantly speeds up generation by avoiding recomputation.
 
 <div class="note">
 <div class="title">MAX operations</div>

@@ -16,13 +16,13 @@ OpenAI trained the original GPT-2 model with specific parameters that you can se
 
 The GPT-2 configuration consists of seven key parameters. Each one controls a different aspect of the model's architecture:
 
-- `vocab_size`: Size of the token vocabulary - the number of unique tokens the model can process (default: 50,257)
-- `n_positions`: Maximum sequence length, also called the context window (default: 1,024)
-- `n_embd`: Embedding dimension - the size of the hidden states that flow through the model (default: 768)
-- `n_layer`: Number of transformer blocks stacked vertically (default: 12)
-- `n_head`: Number of attention heads per layer, enabling parallel attention to different parts of the input (default: 12)
-- `n_inner`: Dimension of the MLP intermediate layer, typically 4x the embedding dimension (default: 3,072)
-- `layer_norm_epsilon`: Small constant for numerical stability in layer normalization (default: 1e-5)
+- `vocab_size`: Size of the token vocabulary (default: 50,257). This seemingly odd number is actually 50,000 BPE tokens + 256 byte-level tokens (fallback for rare characters) + 1 special token. GPT-2 uses byte-pair encoding (BPE) for tokenization.
+- `n_positions`: Maximum sequence length, also called the context window (default: 1,024). This limit is a tradeoff between memory usage, computational cost, and the amount of context the model can attend to. Longer sequences require quadratic memory in attention.
+- `n_embd`: Embedding dimension - the size of the hidden states that flow through the model (default: 768). This determines the model's capacity to represent information.
+- `n_layer`: Number of transformer blocks stacked vertically (default: 12). More layers allow the model to learn more complex patterns.
+- `n_head`: Number of attention heads per layer (default: 12). Multiple heads let the model attend to different types of patterns simultaneously.
+- `n_inner`: Dimension of the MLP intermediate layer (default: 3,072). This is 4× the embedding dimension, a ratio found empirically in the original Transformer paper to work well.
+- `layer_norm_epsilon`: Small constant for numerical stability in layer normalization (default: 1e-5). Prevents division by zero when variance is very small.
 
 These values define the _small_ GPT-2 model. OpenAI released four sizes (small, medium, large, XL), each with different configurations that scale up these parameters.
 

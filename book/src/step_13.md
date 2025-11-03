@@ -10,7 +10,7 @@ In this step you'll add the language model head to create the complete `GPT2LMHe
 
 For each position in the sequence, the model outputs a score for every possible next token. These logits are converted to probabilities using softmax, enabling next-token prediction.
 
-The LM head bridges continuous representations to discrete vocabulary predictions. Without it, the transformer would output meaningless vectors. At 768 × 50,257 = 38.6M parameters, it represents about 33% of GPT-2's 117M total parameters.
+The LM head bridges continuous representations to discrete vocabulary predictions. Without it, the transformer would output meaningless vectors. At 768 × 50,257 = 38.6M parameters, it represents about 33% of GPT-2's 117M total parameters. This makes it the single largest component in the model, even larger than all 12 transformer blocks combined.
 
 ## Understanding the language model head
 
@@ -34,9 +34,9 @@ The LM head bridges continuous representations to discrete vocabulary prediction
 
 **No Bias Term**:
 - `bias=False` means only weights, no bias vector
-- Reduces parameters: saves 50,257 values
+- Reduces parameters: saves 50,257 values (0.4% of model size)
 - Common in language models (GPT-2, GPT-3, etc.)
-- Bias provides little benefit for vocabulary prediction
+- Bias provides little benefit for vocabulary prediction because layer normalization before the LM head already centers the activations. The bias would just add a constant to all logits, which doesn't change the relative probabilities after softmax.
 
 **Complete Model Architecture**:
 1. Input: Token IDs `[batch, seq_length]`
