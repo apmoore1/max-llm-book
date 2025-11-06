@@ -1,7 +1,9 @@
 # Step 09: Transformer block
 
 <div class="note">
-    Learn to combine attention, MLP, layer normalization, and residual connections into a complete transformer block.
+
+Learn to combine attention, MLP, layer normalization, and residual connections into a complete transformer block.
+
 </div>
 
 ## Building the transformer block

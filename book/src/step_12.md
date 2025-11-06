@@ -1,7 +1,9 @@
 # Step 12: Text generation
 
 <div class="note">
-    Learn to implement autoregressive text generation with sampling and temperature control.
+
+Learn to implement autoregressive text generation with sampling and temperature control.
+
 </div>
 
 ## Generating text
@@ -37,6 +39,7 @@ Sampling randomly selects tokens according to their probabilities. Convert logit
 Most practical generation uses sampling with temperature control. This balances creativity with coherence, as the model can explore different possibilities while still favoring high-quality continuations.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

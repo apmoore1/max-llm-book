@@ -1,7 +1,9 @@
 # Step 08: Residual connections and layer normalization
 
 <div class="note">
-    Learn to implement residual connections and layer normalization to enable training deep transformer networks.
+
+Learn to implement residual connections and layer normalization to enable training deep transformer networks.
+
 </div>
 
 ## Building the residual pattern
@@ -27,6 +29,7 @@ The pre-norm residual pattern combines three operations in sequence:
 The complete pattern is `x = x + sublayer(layer_norm(x))`. This differs from post-norm `x = layer_norm(x + sublayer(x))`, as pre-norm is more stable because normalization happens before potentially unstable sublayer operations.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

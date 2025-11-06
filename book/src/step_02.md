@@ -1,7 +1,9 @@
 # Step 02: Causal masking
 
 <div class="note">
-    Learn to create attention masks to prevent the model from _seeing_ future tokens during [autoregressive](https://docs.modular.com/glossary/ai/autoregression) generation.
+
+Learn to create attention masks to prevent the model from _seeing_ future tokens during [autoregressive](https://docs.modular.com/glossary/ai/autoregression) generation.
+
 </div>
 
 ## Implementing causal masking
@@ -22,6 +24,7 @@ The mask creates a lower triangular pattern where each token can only attend to 
 The mask shape is `(sequence_length, sequence_length + num_tokens)`. This shape is designed for [KV cache](https://docs.modular.com/glossary/ai/kv-cache/) compatibility during generation. The KV cache stores key and value tensors from previously generated tokens, so you only need to compute attention for new tokens while attending to both new tokens (sequence_length) and cached tokens (num_tokens). This significantly speeds up generation by avoiding recomputation.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

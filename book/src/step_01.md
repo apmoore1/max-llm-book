@@ -1,7 +1,9 @@
 # Step 01: Model configuration
 
 <div class="note">
-    Learn to define the GPT-2 model architecture parameters using configuration classes.
+
+Learn to define the GPT-2 model architecture parameters using configuration classes.
+
 </div>
 
 ## Defining the model architecture

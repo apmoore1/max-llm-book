@@ -1,7 +1,9 @@
 # Step 03: Layer normalization
 
 <div class="note">
-    Learn to implement layer normalization for stabilizing neural network training.
+
+Learn to implement layer normalization for stabilizing neural network training.
+
 </div>
 
 ## Building layer normalization
@@ -25,6 +27,7 @@ output = weight * (x - mean) / sqrt(variance + epsilon) + bias
 The mean and variance are computed across all features in each example. After normalizing to zero mean and unit variance, the learned weight scales the result and the learned bias shifts it. The epsilon value (typically 1e-5) prevents division by zero when variance is very small.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

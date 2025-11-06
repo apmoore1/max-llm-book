@@ -1,7 +1,9 @@
 # Step 05: Token embeddings
 
 <div class="note">
-    Learn to create token embeddings that convert discrete token IDs into continuous vector representations.
+
+Learn to create token embeddings that convert discrete token IDs into continuous vector representations.
+
 </div>
 
 ## Implementing token embeddings
@@ -20,6 +22,7 @@ The embedding layer stores one vector per vocabulary token. When you pass in tok
 - Shape: [vocab_size, embedding_dim]
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

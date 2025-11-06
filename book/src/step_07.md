@@ -1,7 +1,9 @@
 # Step 07: Multi-head attention
 
 <div class="note">
-    Learn to use multi-head [attention](https://docs.modular.com/glossary/ai/attention/), enabling the model to attend to different representation subspaces.
+
+Learn to use multi-head [attention](https://docs.modular.com/glossary/ai/attention/), enabling the model to attend to different representation subspaces.
+
 </div>
 
 ## Building multi-head attention
@@ -27,6 +29,7 @@ Multi-head attention splits the embedding dimension, computes attention independ
 The layer names `c_attn` (combined Q/K/V projection) and `c_proj` (output projection) match Hugging Face's GPT-2 implementation. This naming is essential for loading pretrained weights.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

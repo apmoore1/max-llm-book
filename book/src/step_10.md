@@ -1,7 +1,9 @@
 # Step 10: Stacking transformer blocks
 
 <div class="note">
-    Learn to stack 12 transformer blocks with embeddings and final normalization to create the complete GPT-2 model.
+
+Learn to stack 12 transformer blocks with embeddings and final normalization to create the complete GPT-2 model.
+
 </div>
 
 ## Building the complete model
@@ -37,6 +39,7 @@ Then, pass through the transformer blocks with `self.h(x)`. Sequential applies a
 Finally, normalize the output with `self.ln_f(x)` and return the result. The output shape matches the input: `[batch, seq_length, 768]`.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

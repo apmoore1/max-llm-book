@@ -1,7 +1,9 @@
 # Step 06: Position embeddings
 
 <div class="note">
-    Learn to create position embeddings that encode the order of tokens in a sequence.
+
+Learn to create position embeddings that encode the order of tokens in a sequence.
+
 </div>
 
 ## Implementing position embeddings
@@ -23,6 +25,7 @@ GPT-2 uses learned position embeddings, meaning these vectors are initialized ra
 - Layer name: `wpe` (word position embeddings)
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

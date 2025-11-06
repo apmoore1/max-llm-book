@@ -1,7 +1,9 @@
 # Step 11: Language model head
 
 <div class="note">
-    Learn to add the final linear projection layer that converts hidden states to vocabulary logits for next-token prediction.
+
+Learn to add the final linear projection layer that converts hidden states to vocabulary logits for next-token prediction.
+
 </div>
 
 ## Adding the language model head
@@ -34,6 +36,7 @@ With the LM head added, you now have the complete GPT-2 architecture:
 Each position gets independent logits over the vocabulary. To predict the next token after position i, you look at the logits at position i. The highest scoring token is the model's top prediction.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:

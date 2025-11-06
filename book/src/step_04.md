@@ -1,7 +1,9 @@
 # Step 04: Feed-forward network
 
 <div class="note">
-    Learn to build the feed-forward network (MLP) that processes information after attention in each transformer block.
+
+Learn to build the feed-forward network (MLP) that processes information after attention in each transformer block.
+
 </div>
 
 ## Building the MLP
@@ -25,6 +27,7 @@ The MLP has three steps applied in sequence:
 The layer names `c_fc` (fully connected) and `c_proj` (projection) match Hugging Face's GPT-2 checkpoint structure. This naming is essential for loading pretrained weights.
 
 <div class="note">
+
 <div class="title">MAX operations</div>
 
 You'll use the following MAX operations to complete this task:
