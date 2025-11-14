@@ -1,4 +1,4 @@
-# Build an LLM from Scratch in MAX
+# Build an LLM from scratch in MAX
 
 Transformer models power today's most impactful AI applications, from language models like ChatGPT to code generation tools like GitHub Copilot. Maybe you've been asked to adapt one of these models for your team, or you want to understand what's actually happening when you call an inference API. Either way, building a transformer from scratch is one of the best ways to truly understand how they work.
 
