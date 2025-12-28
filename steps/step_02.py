@@ -16,6 +16,8 @@ Run: pixi run s02
 # 1: Import the required modules from MAX
 from max.driver import Device
 from max.dtype import DType
+from max.experimental import functional as F
+from max.experimental.tensor import Tensor
 # TODO: Import necessary funcional module from max.experimental with the alias F
 # https://docs.modular.com/max/api/python/experimental/functional
 
@@ -27,7 +29,7 @@ from max.graph import Dim, DimLike
 # 2: Add the @F.functional decorator to make this a MAX functional operation
 # TODO: Add the decorator here
 
-
+@F.functional
 def causal_mask(
     sequence_length: DimLike,
     num_tokens: DimLike,
@@ -53,16 +55,16 @@ def causal_mask(
     # TODO: Use Tensor.constant() with float("-inf"), dtype, and device parameters
     # https://docs.modular.com/max/api/python/experimental/tensor#max.experimental.tensor.Tensor.constant
     # Hint: This creates the base mask value that will block attention to future tokens
-    mask = None
+    mask = Tensor.constant(float("-inf"), dtype=dtype, device=device)
 
     # 4: Broadcast the mask to the correct shape
     # TODO: Use F.broadcast_to() to expand mask to shape (sequence_length, n)
     # https://docs.modular.com/max/api/python/experimental/functional#max.experimental.functional.broadcast_to
     # Hint: This creates a 2D attention mask matrix
-    mask = None
+    mask = F.broadcast_to(mask, shape=(sequence_length, n))
 
     # 5: Apply band_part to create the causal (lower triangular) structure and return the mask
     # TODO: Use F.band_part() with num_lower=None, num_upper=0, exclude=True
     # https://docs.modular.com/max/api/python/experimental/functional/#max.experimental.functional.band_part
     # Hint: This keeps only the lower triangle, allowing attention to past tokens only
-    return None
+    return F.band_part(mask, num_lower=None, num_upper=0, exclude=True)
