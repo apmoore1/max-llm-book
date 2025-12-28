@@ -7,6 +7,10 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from max.experimental.tensor import _DEFAULT_DEVICE
+from max.driver import CPU
+_DEFAULT_DEVICE.set(CPU())
+
 
 def test_step_05():
     """Comprehensive validation for Step 05 implementation."""
@@ -116,7 +120,6 @@ def test_step_05():
 
     # Phase 5: Functional tests
     try:
-        from max.driver import CPU
         from max.dtype import DType
         from max.experimental.tensor import Tensor
         from solutions.solution_01 import GPT2Config
@@ -152,8 +155,10 @@ def test_step_05():
 
         # Verify output is not all zeros (embeddings should have values)
         import numpy as np
+        cpu_output = output.to(CPU())
+        
 
-        output_np = np.from_dlpack(output.to(CPU()))
+        output_np = np.from_dlpack(cpu_output)
         if not np.allclose(output_np, 0):
             results.append("✅ Output contains non-zero embedding values")
         else:
