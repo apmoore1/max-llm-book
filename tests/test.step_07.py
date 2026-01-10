@@ -3,8 +3,13 @@
 import ast
 import sys
 from pathlib import Path
+import re
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from max.experimental.tensor import _DEFAULT_DEVICE
+from max.driver import CPU
+_DEFAULT_DEVICE.set(CPU())
 
 
 def test_step_07():
@@ -150,7 +155,7 @@ def test_step_07():
         )
 
     # Check _attn
-    if "query @ key.transpose(-1, -2)" in source.replace(" ", ""):
+    if "query @ key.transpose(-1, -2)" in re.sub(r"\s+", " ", source):
         results.append("✅ _attn computes Q @ K^T")
     else:
         results.append("❌ _attn should compute query @ key.transpose(-1, -2)")
@@ -247,7 +252,7 @@ def test_step_07():
         batch_size = 2
         seq_length = 8
         test_input = Tensor.ones(
-            (batch_size, seq_length, config.n_embd), dtype=DType.float32, device=CPU()
+            (batch_size, seq_length, config.n_embd), dtype=DType.float32
         )
 
         output = mha(test_input)
@@ -263,7 +268,7 @@ def test_step_07():
             )
 
         # Check output contains non-zero values
-        output_np = np.from_dlpack(output.to(CPU()))
+        output_np = np.from_dlpack(output.to(CPU()).cast(DType.float32))
         if not np.allclose(output_np, 0):
             results.append("✅ Output contains non-zero values")
         else:
@@ -271,7 +276,7 @@ def test_step_07():
 
         # Test _split_heads
         test_tensor = Tensor.ones(
-            (batch_size, seq_length, config.n_embd), dtype=DType.float32, device=CPU()
+            (batch_size, seq_length, config.n_embd), dtype=DType.float32
         )
         split_output = mha._split_heads(test_tensor, config.n_head, mha.head_dim)
         expected_split_shape = (batch_size, config.n_head, seq_length, mha.head_dim)
