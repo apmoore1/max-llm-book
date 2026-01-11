@@ -6,6 +6,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from max.experimental.tensor import _DEFAULT_DEVICE
+from max.driver import CPU
+_DEFAULT_DEVICE.set(CPU())
+
 
 def test_step_09():
     """Comprehensive validation for Step 09 implementation."""
