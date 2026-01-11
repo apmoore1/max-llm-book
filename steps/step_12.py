@@ -1,22 +1,15 @@
 """
-Step 12: Text Generation
+Solution for Step 12: Text Generation
 
-Implement autoregressive text generation with sampling and temperature control.
-
-Tasks:
-1. Import required modules (numpy, F, Tensor, etc.)
-2. Implement generate_next_token: get logits, apply temperature, sample/argmax
-3. Implement generate_tokens: loop to generate multiple tokens
-
-Run: pixi run s12
+This module implements autoregressive text generation using the GPT-2 model.
 """
 
-# TODO: Import required modules
-# Hint: You'll need numpy as np
-# Hint: You'll need CPU from max.driver
-# Hint: You'll need DType from max.dtype
-# Hint: You'll need functional as F from max.experimental
-# Hint: You'll need Tensor from max.experimental.tensor
+import numpy as np
+
+from max.driver import CPU
+from max.dtype import DType
+from max.experimental import functional as F
+from max.experimental.tensor import Tensor
 
 
 def generate_next_token(model, input_ids, temperature=1.0, do_sample=True):
@@ -31,37 +24,33 @@ def generate_next_token(model, input_ids, temperature=1.0, do_sample=True):
     Returns:
         Next token ID as a Tensor
     """
-    # TODO: Get logits from model
-    # Hint: logits = model(input_ids)
-    pass
+    # Get logits from model
+    logits = model(input_ids)
 
-    # TODO: Get logits for last position
-    # Hint: next_token_logits = logits[0, -1, :]
-    pass
+    # Get logits for last position (next token prediction)
+    next_token_logits = logits[0, -1, :]  # Shape: [vocab_size]
 
-    # TODO: If sampling with temperature
     if do_sample and temperature > 0:
-        # TODO: Apply temperature scaling
-        # Hint: temp_tensor = Tensor.constant(temperature, dtype=next_token_logits.dtype, device=next_token_logits.device)
-        # Hint: next_token_logits = next_token_logits / temp_tensor
-        pass
+        # Apply temperature scaling
+        temp_tensor = Tensor.constant(
+            temperature, dtype=next_token_logits.dtype, device=next_token_logits.device
+        )
+        next_token_logits = next_token_logits / temp_tensor
 
-        # TODO: Convert to probabilities
-        # Hint: probs = F.softmax(next_token_logits)
-        pass
+        # Convert to probabilities
+        probs = F.softmax(next_token_logits)
 
-        # TODO: Sample from distribution
-        # Hint: probs_np = np.from_dlpack(probs.to(CPU()))
-        # Hint: next_token_id = np.random.choice(len(probs_np), p=probs_np)
-        # Hint: next_token_tensor = Tensor.constant(next_token_id, dtype=DType.int64, device=input_ids.device)
-        pass
+        # Sample from distribution
+        probs_np = np.from_dlpack(probs.to(CPU()))
+        next_token_id = np.random.choice(len(probs_np), p=probs_np)
+        next_token_tensor = Tensor.constant(
+            next_token_id, dtype=DType.int64, device=input_ids.device
+        )
     else:
-        # TODO: Greedy decoding (select most likely token)
-        # Hint: next_token_tensor = F.argmax(next_token_logits)
-        pass
+        # Greedy decoding: select most likely token
+        next_token_tensor = F.argmax(next_token_logits)
 
-    # TODO: Return the next token
-    return None
+    return next_token_tensor
 
 
 def generate_tokens(
@@ -79,25 +68,18 @@ def generate_tokens(
     Returns:
         Generated sequence including input, shape [batch, seq_length + max_new_tokens]
     """
-    # TODO: Initialize generated tokens with input
-    # Hint: generated_tokens = input_ids
-    pass
+    generated_tokens = input_ids
 
-    # TODO: Generation loop
-    # Hint: for _ in range(max_new_tokens):
-    pass
+    for _ in range(max_new_tokens):
+        # Generate next token
+        next_token = generate_next_token(
+            model, generated_tokens, temperature=temperature, do_sample=do_sample
+        )
 
-    # TODO: Generate next token
-    # Hint: next_token = generate_next_token(model, generated_tokens, temperature=temperature, do_sample=do_sample)
-    pass
+        # Reshape to [1, 1] for concatenation
+        next_token_2d = next_token.reshape([1, -1])
 
-    # TODO: Reshape to [1, 1] for concatenation
-    # Hint: next_token_2d = next_token.reshape([1, -1])
-    pass
+        # Append to sequence
+        generated_tokens = F.concat([generated_tokens, next_token_2d], axis=1)
 
-    # TODO: Append to sequence
-    # Hint: generated_tokens = F.concat([generated_tokens, next_token_2d], axis=1)
-    pass
-
-    # TODO: Return generated sequence
-    return None
+    return generated_tokens
