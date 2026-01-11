@@ -15,12 +15,11 @@ Run: pixi run s10
 """
 
 # TODO: Import required modules
-# Hint: You'll need Tensor from max.experimental.tensor
-# Hint: You'll need Embedding, Module, Sequential from max.nn.module_v3
-# Hint: Import GPT2Config from solutions.solution_01
-# Hint: Import LayerNorm from solutions.solution_08
-# Hint: Import GPT2Block from solutions.solution_09
-
+from max.experimental.tensor import Tensor
+from max.nn.module_v3 import Module, Embedding, Sequential
+from solutions.solution_01 import GPT2Config
+from solutions.solution_08 import LayerNorm
+from solutions.solution_09 import GPT2Block
 
 class GPT2Model(Module):
     """Complete GPT-2 transformer model."""
@@ -35,22 +34,22 @@ class GPT2Model(Module):
 
         # TODO: Create token embeddings
         # Hint: Use Embedding(config.vocab_size, dim=config.n_embd)
-        self.wte = None
+        self.wte = Embedding(config.vocab_size, dim=config.n_embd)
 
         # TODO: Create position embeddings
         # Hint: Use Embedding(config.n_positions, dim=config.n_embd)
-        self.wpe = None
+        self.wpe = Embedding(config.n_positions, dim=config.n_embd)
 
         # TODO: Stack transformer blocks
         # Hint: Use Sequential(*(GPT2Block(config) for _ in range(config.n_layer)))
         # This creates config.n_layer blocks (12 for GPT-2 base)
-        self.h = None
+        self.h = Sequential(*(GPT2Block(config) for _ in range(config.n_layer)))
 
         # TODO: Create final layer normalization
         # Hint: Use LayerNorm(config.n_embd, eps=config.layer_norm_epsilon)
-        self.ln_f = None
+        self.ln_f = LayerNorm(config.n_embd, eps=config.layer_norm_epsilon)
 
-    def __call__(self, input_ids):
+    def __call__(self, input_ids: Tensor):
         """Forward pass through the transformer.
 
         Args:
@@ -59,30 +58,17 @@ class GPT2Model(Module):
         Returns:
             Hidden states, shape [batch, seq_length, n_embd]
         """
-        # TODO: Get batch size and sequence length
-        # Hint: batch_size, seq_length = input_ids.shape
-        pass
+        batch_size, sequence_length = input_ids.shape
 
         # TODO: Get token embeddings
         # Hint: tok_embeds = self.wte(input_ids)
-        pass
+        tok_embeds = self.wte(input_ids)
+        pos_embeds = self.wpe(Tensor.arange(sequence_length,
+                                                              dtype=input_ids.dtype,
+                                                              device=input_ids.device))
 
-        # TODO: Get position embeddings
-        # Hint: Create position indices with Tensor.arange(seq_length, dtype=input_ids.dtype, device=input_ids.device)
-        # Hint: pos_embeds = self.wpe(position_indices)
-        pass
+        token_position_embeddings = tok_embeds + pos_embeds
 
-        # TODO: Combine embeddings
-        # Hint: x = tok_embeds + pos_embeds
-        pass
-
-        # TODO: Apply transformer blocks
-        # Hint: x = self.h(x)
-        pass
-
-        # TODO: Apply final layer norm
-        # Hint: x = self.ln_f(x)
-        pass
-
-        # TODO: Return the output
-        return None
+        transformer_output = self.h(token_position_embeddings)
+        norm_transformer_output = self.ln_f(transformer_output)
+        return norm_transformer_output
