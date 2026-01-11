@@ -13,11 +13,10 @@ Tasks:
 Run: pixi run s08
 """
 
-# TODO: Import required modules
-# Hint: You'll need F from max.experimental
-# Hint: You'll need Tensor from max.experimental.tensor
-# Hint: You'll need DimLike from max.graph
-# Hint: You'll need Module from max.nn.module_v3
+from max.experimental import functional as F
+from max.experimental.tensor import Tensor
+from max.graph import DimLike
+from max.nn.module_v3 import Module
 
 
 class LayerNorm(Module):
@@ -32,14 +31,8 @@ class LayerNorm(Module):
         """
         super().__init__()
         self.eps = eps
-
-        # TODO: Create learnable scale parameter (weight)
-        # Hint: Use Tensor.ones([dim])
-        self.weight = None
-
-        # TODO: Create learnable shift parameter (bias)
-        # Hint: Use Tensor.zeros([dim])
-        self.bias = None
+        self.weight = Tensor.ones([dim])
+        self.bias = Tensor.zeros([dim])
 
     def __call__(self, x: Tensor) -> Tensor:
         """Apply layer normalization.
@@ -50,9 +43,7 @@ class LayerNorm(Module):
         Returns:
             Normalized tensor, same shape as input
         """
-        # TODO: Apply layer normalization
-        # Hint: Use F.layer_norm(x, gamma=self.weight, beta=self.bias, epsilon=self.eps)
-        return None
+        return F.layer_norm(x, gamma=self.weight, beta=self.bias, epsilon=self.eps)
 
 
 class ResidualBlock(Module):
@@ -67,10 +58,7 @@ class ResidualBlock(Module):
         """
         super().__init__()
 
-        # TODO: Create layer normalization
-        # Hint: Use LayerNorm(dim, eps=eps)
-        self.ln = None
-
+        self.ln = LayerNorm(dim, eps=eps)
     def __call__(self, x: Tensor, sublayer_output: Tensor) -> Tensor:
         """Apply residual connection.
 
@@ -81,9 +69,7 @@ class ResidualBlock(Module):
         Returns:
             x + sublayer_output
         """
-        # TODO: Add input and sublayer output (residual connection)
-        # Hint: return x + sublayer_output
-        return None
+        return x + sublayer_output
 
 
 def apply_residual_connection(input_tensor: Tensor, sublayer_output: Tensor) -> Tensor:
@@ -96,6 +82,4 @@ def apply_residual_connection(input_tensor: Tensor, sublayer_output: Tensor) -> 
     Returns:
         input_tensor + sublayer_output
     """
-    # TODO: Add the two tensors
-    # Hint: return input_tensor + sublayer_output
-    return None
+    return input_tensor + sublayer_output
